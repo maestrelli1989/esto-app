@@ -1,0 +1,13 @@
+<div class="photo-wrapper">
+  <div *ngFor="let photo of photos | slice:0:visibleImages; let i=index" class="photo">
+    <a routerLink="/photos/{{photo.id}}">  
+      <figure>
+        <img src="{{photo.url}}" alt="{{photo.title}}" title="{{photo.title}}">
+      </figure>
+    </a>
+  </div>
+</div>
+<div (click)="increaseVisibleImages()" class="load-more-btn">
+  <i class="fas fa-caret-down"></i>
+  Load more
+</div>

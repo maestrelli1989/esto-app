@@ -1,0 +1,21 @@
+.photo-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+  .photo {
+    a {
+      display: block;
+      max-width: 250px;
+      figure {
+        margin-bottom: 25px;
+        img {
+          max-width: 250px;
+          border-radius: 16px;
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { PhotoDataService } from '../photo-data.service';
+
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
@@ -7,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritesComponent implements OnInit {
 
-  constructor() { }
+  favoritePhotos: Array<{id: number, url: string, title: string}> = [];
 
-  ngOnInit() { }
+  constructor(private photoDataService: PhotoDataService) { }
+
+  ngOnInit() {
+    this.photoDataService.currentState.subscribe(favorite => this.favoritePhotos = favorite);
+  }
 
 }

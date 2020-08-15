@@ -1,10 +1,14 @@
 .load-more-btn {
-  margin: 30px auto;
+  margin: 0 auto;
   text-align: center;
   background-color: #90ff12;
   color: #fefefe;
   padding: 10px 20px;
-  border-radius: 8px;
-  width: calc(100% - 100px);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  width: 100%;
   cursor: pointer;
+  position: fixed;
+  left: 0;
+  bottom: 0;
 }

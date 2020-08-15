@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { Photo } from './photo';
 
@@ -12,6 +13,9 @@ import { Photo } from './photo';
 export class PhotoDataService {
 
   private apiUrl: string = 'http://jsonplaceholder.typicode.com/photos';
+  private arraySource = new BehaviorSubject<Array<any>>([]);
+  
+  currentState = this.arraySource.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -23,6 +27,11 @@ export class PhotoDataService {
   getPhoto(id: number): Observable<Photo> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Photo>(url);
+  }
+
+  updateFavoritesList(favoritePhotos: Array<{id: number, url: string, title: string}> = []) {
+    this.arraySource.next(favoritePhotos);
+    console.log(favoritePhotos);
   }
 
 }

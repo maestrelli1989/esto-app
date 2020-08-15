@@ -1,0 +1,11 @@
+<h4 *ngIf="favoritePhotos.length == 0">Empty list</h4>
+
+<div class="photo-wrapper" *ngIf="favoritePhotos">
+  <div *ngFor="let photo of favoritePhotos" class="photo">
+    <a routerLink="/photos/{{photo.id}}">  
+      <figure>
+        <img src="{{photo.url}}" alt="{{photo.title}}" title="{{photo.title}}">
+      </figure>
+    </a>
+  </div>
+</div>

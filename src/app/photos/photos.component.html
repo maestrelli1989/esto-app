@@ -1,13 +1,12 @@
-<div class="photo-wrapper">
-  <div *ngFor="let photo of photos | slice:0:visibleImages; let i=index" class="photo">
-    <a routerLink="/photos/{{photo.id}}">  
-      <figure>
-        <img src="{{photo.url}}" alt="{{photo.title}}" title="{{photo.title}}">
-      </figure>
-    </a>
+<div class="photo-wrapper" *ngIf="photos">
+  <div *ngFor="let photo of photos | slice:0:visibleImages" class="photo">
+    <figure>
+      <img src="{{photo.url}}" alt="{{photo.title}}" title="{{photo.title}}">
+    </figure>
+    <button (click)="addToFav(photo, $event)" class="add-to-fav-btn">Add to Favorites</button>
   </div>
 </div>
-<div (click)="increaseVisibleImages()" class="load-more-btn">
+<div (click)="increaseVisibleImagesByClick()" class="load-more-btn">
   <i class="fas fa-caret-down"></i>
   Load more
 </div>

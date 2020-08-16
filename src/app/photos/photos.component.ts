@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { Photo } from '../photo';
 import { PhotoDataService } from '../photo-data.service';
@@ -8,24 +9,26 @@ import { PhotoDataService } from '../photo-data.service';
   templateUrl: './photos.component.html',
   styleUrls: ['./photos.component.scss']
 })
+
 export class PhotosComponent implements OnInit {
 
   photos: Photo[];
   visibleImages: number = 9;
   favoritePhotos: Array<{id: number, url: string, title: string}> = [];
 
-  constructor(private photoDataService: PhotoDataService) { }
+  constructor(
+    private photoDataService: PhotoDataService,
+    private titleService: Title
+  ) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Esto App | Home');
     this.getPhotos();
-    this.photoDataService.currentState.subscribe(message => this.favoritePhotos = message);
+    this.photoDataService.currentState.subscribe(favorite => this.favoritePhotos = favorite);
   }
 
   getPhotos(): void {
-    this.photoDataService.getPhotos()
-      .subscribe(
-        data => this.photos = data
-      );
+    this.photoDataService.getPhotos().subscribe(data => this.photos = data);
   }
 
   addToFav(photo: any, event: any) {
@@ -43,7 +46,7 @@ export class PhotosComponent implements OnInit {
   }
 
   @HostListener('window:scroll') increaseVisibleImagesByScroll(): void {
-      setTimeout(() => { this.increaseVisibleImagesCounter() }, 200);
+      setTimeout(() => { this.increaseVisibleImagesCounter() }, 300);
     }
 
 }

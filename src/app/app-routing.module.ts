@@ -10,7 +10,7 @@ const routes: Routes = [
 	{ path: '', component: PhotosComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'photos/:id', component: PhotoDetailsComponent },
-  { path: '**', component: PhotosComponent }
+  { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({
